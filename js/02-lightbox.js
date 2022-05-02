@@ -8,24 +8,14 @@ const refs = {
 
 function createGalleryMarkup(imgArray) {
     return imgArray.map(({preview, original, description}) => {
-        return `<a class="gallery__item" href=${original}>
+        return `<li class='gallery__item' ><a class="gallery__link" href=${original}>
         <img class="gallery__image" src=${preview} alt=${description} />
-      </a>`
+      </a></li>`
       
     }).join('');
  }
  
  const imageMarkup = createGalleryMarkup(galleryItems);
  refs.galleryBox.insertAdjacentHTML('beforeend', imageMarkup);
-
- function onGalleryBoxClick(evt){
-    evt.preventDefault()
-    if(!evt.target.classList.contains('gallery__image')){
-        return;
-    }
- };
-  
- refs.galleryBox.addEventListener('click', onGalleryBoxClick);
-
 
 const lightbox = new SimpleLightbox('.gallery a', {captionsData: "alt", captionDelay: 250});
